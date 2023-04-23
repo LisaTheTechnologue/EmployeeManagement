@@ -15,7 +15,7 @@ public class EmployeeService {
         this.employeeRepo = employeeRepo;
     }
 
-    public List<Employee> getAllCategories() {
+    public List<Employee> getAllEmployees() {
         List<Employee> employees = employeeRepo.findAll();
         if (employees != null) {
             return employees;
@@ -24,12 +24,16 @@ public class EmployeeService {
         }
     }
 
-    public Employee getCategoryById(Long categoryId) {
+    public Employee getEmployeeById(Long categoryId) {
         try {
             Employee employee = employeeRepo.findById(categoryId).get();
             return employee;
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public Employee save(Employee employee) {
+        return employeeRepo.save(employee);
     }
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new employee</title>
+</head>
+<body>
+<div class="container">
+    <h1>Personal Details</h1>
+    <form action="#" th:action="@{/employees/save}" th:object="${employee}"
+          method="post">
+        <fieldset>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="firstNameInput">First Name</label>
+                    <input type="text" class="form-control"
+                           id="firstNameInput" required
+                           th:field="*{employee.firstName}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="middleNameInput">Middle Name</label>
+                    <input type="text" class="form-control"
+                           id="middleNameInput"
+                           th:field="*{employee.middleName}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="lastNameInput">Last Name</label>
+                    <input type="text" class="form-control"
+                           id="lastNameInput" required
+                           th:field="*{employee.lastName}"/>
+                </div>
+            </div>
+
+            <input type="submit" id="createButton" th:value="Create">
+            <input type="reset" id="cancelButton" name="reset" th:value="Cancel"/>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

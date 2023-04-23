@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+
+<!-- Blog main content -->
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Middle name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${employees.empty}">
+                <td colspan="2"> No Employees Available</td>
+            </tr>
+            <tr th:each="employee : ${employees}">
+                <td><span th:text="${employee.firstName}"> </span></td>
+                <td><span th:text="${employee.middleName}"> </span></td>
+                <td><span th:text="${employee.lastName}"> </span></td>
+                <td><span th:text="${employee.department}"> </span></td>
+                <td><span th:text="${employee.category}"> </span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>
