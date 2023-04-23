@@ -1,20 +1,22 @@
 package com.ngantcb.EmployeeManagement.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Table(name = "tbl_emp")
 @Entity
 @Data
+@NoArgsConstructor
 public class Employee {
 
-    @Column(name = "ID", nullable = false)
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @NotNull(message = "First Name cannot be null")
     @Column(name = "FIRST_NAME", nullable = false, length = 45)
@@ -51,6 +53,7 @@ public class Employee {
 
     @Column(name = "EMAIL", nullable = false)
     @NotNull(message = "Email cannot be null")
+    @Email
     private String email;
 
     @Column(name = "PHONE_NUMBER", length = 11)
@@ -70,140 +73,4 @@ public class Employee {
 
     @Column(name = "IS_DELETED", length = 1)
     private String isDeleted;
-
-    public String getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(String isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public Short getExperienceMonth() {
-        return experienceMonth;
-    }
-
-    public void setExperienceMonth(Short experienceMonth) {
-        this.experienceMonth = experienceMonth;
-    }
-
-    public Short getExperienceYear() {
-        return experienceYear;
-    }
-
-    public void setExperienceYear(Short experienceYear) {
-        this.experienceYear = experienceYear;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    public void setMaritalStatus(String maritalStatus) {
-        this.maritalStatus = maritalStatus;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Date getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(Date joiningDate) {
-        this.joiningDate = joiningDate;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getNameAlias() {
-        return nameAlias;
-    }
-
-    public void setNameAlias(String nameAlias) {
-        this.nameAlias = nameAlias;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 }

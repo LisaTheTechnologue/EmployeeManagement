@@ -1,39 +1,16 @@
 package com.ngantcb.EmployeeManagement.service;
 
 import com.ngantcb.EmployeeManagement.entity.Employee;
-import com.ngantcb.EmployeeManagement.repo.EmployeeRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-public class EmployeeService {
+public interface EmployeeService {
+    public List<Employee> getAll();
 
-    @Autowired
-    private final EmployeeRepo employeeRepo;
+    public Employee save(Employee employee);
 
-    public EmployeeService(EmployeeRepo employeeRepo) {
-        this.employeeRepo = employeeRepo;
-    }
+    public Employee get(Long id);
 
-    public List<Employee> getAllEmployees() {
-        List<Employee> employees = employeeRepo.findAll();
-        if (employees != null) {
-            return employees;
-        } else {
-            return null;
-        }
-    }
-
-    public Employee getEmployeeById(Long categoryId) {
-        try {
-            Employee employee = employeeRepo.findById(categoryId).get();
-            return employee;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public Employee save(Employee employee) {
-        return employeeRepo.save(employee);
-    }
+    public void delete(Employee employee);
 }

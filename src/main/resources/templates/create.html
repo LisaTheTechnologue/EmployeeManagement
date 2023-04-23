@@ -32,6 +32,83 @@
                            th:field="*{employee.lastName}"/>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="nameAliasInput">Name Alias</label>
+                    <input type="text" class="form-control"
+                           id="nameAliasInput" required
+                           th:field="*{employee.nameAlias}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="genderInput">Gender</label>
+                    <input type="text" class="form-control"
+                           id="genderInput"
+                           th:field="*{employee.gender}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="dobInput">Date of Birth</label>
+                    <input type="text" class="form-control"
+                           id="dobInput" required
+                           th:field="*{employee.dob}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="joiningDateInput">Joining Date</label>
+                    <input type="text" class="form-control"
+                           id="joiningDateInput" required
+                           th:field="*{employee.joiningDate}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="departmentInput">Department</label>
+                    <input type="text" class="form-control"
+                           id="departmentInput"
+                           th:field="*{employee.department}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="designationInput">Designation</label>
+                    <input type="text" class="form-control"
+                           id="designationInput" required
+                           th:field="*{employee.designation}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="categoryInput">Category</label>
+                    <input type="text" class="form-control"
+                           id="categoryInput" required
+                           th:field="*{employee.category}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="emailInput">Email ID</label>
+                    <input type="text" class="form-control"
+                           id="emailInput"
+                           th:field="*{employee.email}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="phoneNumberInput">Mobile No</label>
+                    <input type="text" class="form-control"
+                           id="phoneNumberInput" required
+                           th:field="*{employee.phoneNumber}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="maritalStatusInput">Marital Status</label>
+                    <input type="text" class="form-control"
+                           id="maritalStatusInput" required
+                           th:field="*{employee.maritalStatus}"/>
+                </div>
+                <div class="col-sm form-group">
+                    <label for="experienceYearInput">Total Experience</label>
+                    <input type="text" class="form-control"
+                           id="experienceMonthInput"
+                           th:field="*{employee.experienceMonth}"/>
+                    <input type="text" class="form-control"
+                           id="experienceYearInput"
+                           th:field="*{employee.experienceYear}"/>
+                </div>
+            </div>
 
             <input type="submit" id="createButton" th:value="Create">
             <input type="reset" id="cancelButton" name="reset" th:value="Cancel"/>

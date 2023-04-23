@@ -1,14 +1,19 @@
 <!DOCTYPE HTML>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+      ~{::title},
+      ~{:: #home-main-content}
+      )}">
 <head>
     <title>Home</title>
 </head>
 <body>
 
 <!-- Blog main content -->
-<div class="container">
+<div id="home-main-content">
+    <a th:href="@{/create}" class="btn btn-primary btn-sm mb-3" >Add</a>
     <table class="table">
         <thead>
             <tr>
@@ -17,6 +22,7 @@
                 <th scope="col">Last name</th>
                 <th scope="col">Department</th>
                 <th scope="col">Category</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +35,10 @@
                 <td><span th:text="${employee.lastName}"> </span></td>
                 <td><span th:text="${employee.department}"> </span></td>
                 <td><span th:text="${employee.category}"> </span></td>
+                <td> <a th:href="@{/{id}(id=${employee.id})}"
+                        class="btn btn-primary">Update</a>
+                    <a th:href="@{/{id}(id=${employee.id})}"
+                       class="btn btn-danger">Delete</a>
             </tr>
         </tbody>
     </table>

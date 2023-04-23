@@ -1,7 +1,7 @@
 package com.ngantcb.EmployeeManagement.controller;
 
 import com.ngantcb.EmployeeManagement.entity.Employee;
-import com.ngantcb.EmployeeManagement.service.EmployeeService;
+import com.ngantcb.EmployeeManagement.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
 
     @Autowired
-    EmployeeService service;
+    EmployeeRepository service;
 
     @GetMapping(value = {"/", "/index", "/home"})
     public String index(Model model) {
-        model.addAttribute("employees", service.getAllEmployees());
+        model.addAttribute("employees", service.findAll());
         return "index";
     }
 
@@ -24,6 +24,12 @@ public class EmployeeController {
     public String employee(Model model) {
         // form
         model.addAttribute("employee", new Employee());
+        return "create";
+    }
+
+    @GetMapping("/employee/{id}/delete")
+    public String deleteEmployee(@PathVariable Long id, Model model) {
+        service.deleteById(id);
         return "employee";
     }
 
@@ -39,7 +45,7 @@ public class EmployeeController {
     @GetMapping("/employee/{id}")
     public String employee(@PathVariable Long id, Model model) {
 
-        model.addAttribute("employee", service.getEmployeeById(id));
+        model.addAttribute("employee", service.findById(id));
 
         return "employee";
     }
