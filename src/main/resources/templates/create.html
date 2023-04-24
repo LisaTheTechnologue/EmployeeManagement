@@ -16,8 +16,15 @@
     <h1>Employee</h1>
 </div>
 <div class="container">
+    <th:block th:if="${error=='failed'}">
+        <div class="alert alert-danger" role="alert"> Create fail!!!
+            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </th:block>
     <h3>Personal Details</h3>
-    <form action="#" th:action="@{/save}"
+    <form action="#" th:action="@{/create}"
           th:object="${employee}" method="POST">
         <fieldset>
             <div class="row">

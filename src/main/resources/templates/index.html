@@ -17,8 +17,17 @@
     <h1>Employee</h1>
 </div>
 <div class="container">
+    <th:block th:if="${error=='failed'}">
+        <div class="alert alert-danger" role="alert"> Delete fail!!!
+            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </th:block>
     <h3>Employee List</h3>
-    <div class="text-right"><a th:href="@{/create}" class="btn btn-success mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Add</a></div>
+    <div class="text-right"><a class="btn btn-success mb-3" th:href="@{/create}"><i aria-hidden="true"
+                                                                                    class="fa fa-plus"></i> Add</a>
+    </div>
     <table class="table">
         <thead>
         <tr class="font-weight-bold">
