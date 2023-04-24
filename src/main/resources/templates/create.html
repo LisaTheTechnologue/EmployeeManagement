@@ -1,117 +1,146 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
-    <meta charset="UTF-8">
     <title>Create new employee</title>
+    <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../../static/style.css"/>
+    <script src="https://kit.fontawesome.com/b8922613b9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="header">
+    <h1>Employee</h1>
+</div>
 <div class="container">
-    <h1>Personal Details</h1>
-    <form action="#" th:action="@{/employees/save}" th:object="${employee}"
-          method="post">
+    <h3>Personal Details</h3>
+    <form action="#" th:action="@{/save}"
+          th:object="${employee}" method="POST">
         <fieldset>
             <div class="row">
-                <div class="col-sm form-group">
+                <div class="col-sm form-group required">
                     <label for="firstNameInput">First Name</label>
                     <input type="text" class="form-control"
                            id="firstNameInput" required
-                           th:field="*{employee.firstName}"/>
+                           th:field="*{firstName}"/>
                 </div>
                 <div class="col-sm form-group">
                     <label for="middleNameInput">Middle Name</label>
                     <input type="text" class="form-control"
                            id="middleNameInput"
-                           th:field="*{employee.middleName}"/>
+                           th:field="*{middleName}"/>
                 </div>
-                <div class="col-sm form-group">
+                <div class="col-sm form-group required">
                     <label for="lastNameInput">Last Name</label>
                     <input type="text" class="form-control"
                            id="lastNameInput" required
-                           th:field="*{employee.lastName}"/>
+                           th:field="*{lastName}"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm form-group">
                     <label for="nameAliasInput">Name Alias</label>
                     <input type="text" class="form-control"
-                           id="nameAliasInput" required
-                           th:field="*{employee.nameAlias}"/>
+                           id="nameAliasInput"
+                           th:field="*{nameAlias}"/>
                 </div>
                 <div class="col-sm form-group">
                     <label for="genderInput">Gender</label>
-                    <input type="text" class="form-control"
-                           id="genderInput"
-                           th:field="*{employee.gender}"/>
+                    <select class="form-control"
+                            id="genderInput"
+                            th:field="*{gender}"
+                            name="gender">
+                        <option th:each="genderOpt : ${T(com.ngantcb.EmployeeManagement.entity.enums.GenderEnum).values()}"
+                                th:value="${genderOpt}" th:text="${genderOpt}"></option>
+                    </select>
                 </div>
                 <div class="col-sm form-group">
                     <label for="dobInput">Date of Birth</label>
-                    <input type="text" class="form-control"
-                           id="dobInput" required
-                           th:field="*{employee.dob}"/>
+                    <input type="date" th:field="*{dob}" id="dobInput" class="form-control"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm form-group">
                     <label for="joiningDateInput">Joining Date</label>
-                    <input type="text" class="form-control"
-                           id="joiningDateInput" required
-                           th:field="*{employee.joiningDate}"/>
+                    <input type="date" class="form-control"
+                           id="joiningDateInput"
+                           th:field="*{joiningDate}"/>
                 </div>
-                <div class="col-sm form-group">
+                <div class="col-sm form-group required">
                     <label for="departmentInput">Department</label>
-                    <input type="text" class="form-control"
-                           id="departmentInput"
-                           th:field="*{employee.department}"/>
+                    <select class="form-control"
+                            id="departmentInput" required
+                            th:field="*{department}"
+                            name="department">
+                        <option th:each="departmentOpt : ${T(com.ngantcb.EmployeeManagement.entity.enums.DepartmentEnum).values()}"
+                                th:value="${departmentOpt}" th:text="${departmentOpt}"></option>
+                    </select>
                 </div>
                 <div class="col-sm form-group">
                     <label for="designationInput">Designation</label>
-                    <input type="text" class="form-control"
-                           id="designationInput" required
-                           th:field="*{employee.designation}"/>
+                    <select class="form-control"
+                            id="designationInput"
+                            th:field="*{designation}"
+                            name="designation">
+                        <option th:each="designationOpt : ${T(com.ngantcb.EmployeeManagement.entity.enums.DesignationEnum).values()}"
+                                th:value="${designationOpt}" th:text="${designationOpt}"></option>
+                    </select>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm form-group">
+                <div class="col-sm form-group required">
                     <label for="categoryInput">Category</label>
-                    <input type="text" class="form-control"
-                           id="categoryInput" required
-                           th:field="*{employee.category}"/>
+                    <select class="form-control"
+                            id="categoryInput" required
+                            th:field="*{category}"
+                            name="category">
+                        <option th:each="categoryOpt : ${T(com.ngantcb.EmployeeManagement.entity.enums.CategoryEnum).values()}"
+                                th:value="${categoryOpt}" th:text="${categoryOpt}"></option>
+                    </select>
                 </div>
-                <div class="col-sm form-group">
+                <div class="col-sm form-group required">
                     <label for="emailInput">Email ID</label>
                     <input type="text" class="form-control"
-                           id="emailInput"
-                           th:field="*{employee.email}"/>
+                           id="emailInput" required
+                           th:field="*{email}"/>
                 </div>
-                <div class="col-sm form-group">
+                <div class="col-sm form-group required">
                     <label for="phoneNumberInput">Mobile No</label>
                     <input type="text" class="form-control"
                            id="phoneNumberInput" required
-                           th:field="*{employee.phoneNumber}"/>
+                           th:field="*{phoneNumber}"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm form-group">
                     <label for="maritalStatusInput">Marital Status</label>
-                    <input type="text" class="form-control"
-                           id="maritalStatusInput" required
-                           th:field="*{employee.maritalStatus}"/>
+                    <select class="form-control"
+                            id="maritalStatusInput"
+                            th:field="*{maritalStatus}"
+                            name="maritalStatus">
+                        <option th:each="maritalStatusOpt : ${T(com.ngantcb.EmployeeManagement.entity.enums.MaritalStatusEnum).values()}"
+                                th:value="${maritalStatusOpt}" th:text="${maritalStatusOpt}"></option>
+                    </select>
                 </div>
-                <div class="col-sm form-group">
+                <div class="col-sm form-group ">
                     <label for="experienceYearInput">Total Experience</label>
-                    <input type="text" class="form-control"
-                           id="experienceMonthInput"
-                           th:field="*{employee.experienceMonth}"/>
-                    <input type="text" class="form-control"
-                           id="experienceYearInput"
-                           th:field="*{employee.experienceYear}"/>
+                    <div class="row">
+                        <select class="col-sm form-control"
+                                id="experienceMonthInput" placeholder="Year" th:field="*{experienceMonth}">
+                            <option th:each="i : ${#numbers.sequence(0, 50)}" th:value="${i}" th:text="${i}"></option>
+                        </select>
+                        <select class="col-sm form-control"
+                                id="experienceYearInput" placeholder="Month" th:field="*{experienceYear}">
+                            <option th:each="i : ${#numbers.sequence(0, 12)}" th:value="${i}" th:text="${i}"></option>
+                        </select>
+                    </div>
                 </div>
             </div>
-
-            <input type="submit" id="createButton" th:value="Create">
-            <input type="reset" id="cancelButton" name="reset" th:value="Cancel"/>
+            <button type="submit" class="btn btn-primary btn-sm mb-3">Create</button>
+            <a th:href="@{/}" class="btn btn-danger btn-sm mb-3">Cancel</a>
         </fieldset>
     </form>
 </div>

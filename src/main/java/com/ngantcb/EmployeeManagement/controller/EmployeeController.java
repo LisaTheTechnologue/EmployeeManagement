@@ -2,6 +2,7 @@ package com.ngantcb.EmployeeManagement.controller;
 
 import com.ngantcb.EmployeeManagement.entity.Employee;
 import com.ngantcb.EmployeeManagement.repository.EmployeeRepository;
+import com.ngantcb.EmployeeManagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepository service;
+    EmployeeService service;
 
     @GetMapping(value = {"/", "/index", "/home"})
     public String index(Model model) {
-        model.addAttribute("employees", service.findAll());
+        model.addAttribute("employees", service.getAll());
         return "index";
     }
 
@@ -27,26 +28,22 @@ public class EmployeeController {
         return "create";
     }
 
-    @GetMapping("/employee/{id}/delete")
-    public String deleteEmployee(@PathVariable Long id, Model model) {
-        service.deleteById(id);
-        return "employee";
-    }
-
     @PostMapping("/save")
-    public String addEmployee(@ModelAttribute("employee") Employee employee,
-                             BindingResult result, Model model) {
+    public String addEmployee(@ModelAttribute("employee") Employee employee) {
         service.save(employee);
-
         return "redirect:/";
 
     }
 
-    @GetMapping("/employee/{id}")
-    public String employee(@PathVariable Long id, Model model) {
-
-        model.addAttribute("employee", service.findById(id));
-
-        return "employee";
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable(value = "id") Long id) {
+        service.delete(id);
+        return "redirect:/";
+    }
+    @GetMapping("/details/{id}")
+    public String getEmployeeById(@PathVariable(value = "id") Long id,Model model) {
+        Employee employee = service.get(id);
+        model.addAttribute("emp", employee);
+        return "details";
     }
 }

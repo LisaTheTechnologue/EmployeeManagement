@@ -1,21 +1,22 @@
 package com.ngantcb.EmployeeManagement.entity;
 
+import com.ngantcb.EmployeeManagement.entity.enums.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "tbl_emp")
 @Entity
 @Data
-@NoArgsConstructor
-public class Employee {
+public class Employee implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "First Name cannot be null")
@@ -32,15 +33,15 @@ public class Employee {
     @Column(name = "NAME_ALIAS", length = 45)
     private String nameAlias;
 
-    @Column(name = "GENDER", length = 45)
+    @Column(name = "GENDER", length = 10)
     private String gender;
 
     @Column(name = "DOB")
-    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
     @Column(name = "JOINING_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date joiningDate;
 
     @NotNull(message = "Department cannot be null")
@@ -59,6 +60,9 @@ public class Employee {
     @Column(name = "PHONE_NUMBER", length = 11)
     private String phoneNumber;
 
+    @Column(name = "DESIGNATION", length = 45)
+    private String designation;
+
     @Column(name = "MARITAL_STATUS", length = 10)
     private String maritalStatus;
 
@@ -73,4 +77,43 @@ public class Employee {
 
     @Column(name = "IS_DELETED", length = 1)
     private String isDeleted;
+
+    public Employee() {
+    }
+
+    public GenderEnum getGenderEnum() {
+        return gender == null ? GenderEnum.OTHER : GenderEnum.fromId(gender);
+    }
+
+    public void setGenderEnum(GenderEnum gender) {
+        this.gender = gender == null ? null : gender.getId();
+    }
+    public DepartmentEnum getDepartmentEnum() {
+        return department == null ? DepartmentEnum.DEPARTMENT1 : DepartmentEnum.fromId(department);
+    }
+
+    public void setDepartmentEnum(DepartmentEnum department) {
+        this.department = department == null ? null : department.getId();
+    }
+    public CategoryEnum getCategoryEnum() {
+        return category == null ? CategoryEnum.CATEGORY1 : CategoryEnum.fromId(category);
+    }
+
+    public void setCategoryEnum(CategoryEnum category) {
+        this.category = category == null ? null : category.getId();
+    }
+    public DesignationEnum getDesignationEnum() {
+        return designation == null ? DesignationEnum.DESIGNATION1 : DesignationEnum.fromId(designation);
+    }
+
+    public void setDesignationEnum(DesignationEnum designation) {
+        this.designation = designation == null ? null : designation.getId();
+    }
+    public MaritalStatusEnum getMaritalStatusEnum() {
+        return maritalStatus == null ? MaritalStatusEnum.SINGLE : MaritalStatusEnum.fromId(maritalStatus);
+    }
+
+    public void setMaritalStatusEnum(MaritalStatusEnum maritalStatus) {
+        this.maritalStatus = maritalStatus == null ? null : maritalStatus.getId();
+    }
 }
